@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmEmpleado.aspx.cs" Inherits="AppReservasULACIT.frmEmpleado" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmEmpleado.aspx.cs" Inherits="AppReservasULACIT.frmEmpleado" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,7 +28,7 @@
                     <asp:Label ID="Label2" runat="server" Text="Codigo"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" runat="server" OnTextChanged="txtCodigo_TextChanged" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -74,7 +74,7 @@
             <tr>
                 <td class="auto-style1">Codigo de la Sucursal</td>
                 <td>
-                    <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtSucursal" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>

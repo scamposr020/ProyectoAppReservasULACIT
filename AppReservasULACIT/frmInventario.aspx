@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmInventario.aspx.cs" Inherits="AppReservasULACIT.frmInventario" %>
+﻿<%@ Page Title="" Async="true" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmInventario.aspx.cs" Inherits="AppReservasULACIT.frmInventario" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -28,7 +28,7 @@
                     <asp:Label ID="Label2" runat="server" Text="Codigo"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -37,7 +37,7 @@
                     <asp:Label ID="Label3" runat="server" Text="Cantidad total"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCantTotal" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCantTotal" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -46,28 +46,28 @@
                     <asp:Label ID="Label4" runat="server" Text="Cantidad disponible"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCantDisponible" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCantDisponible" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">Cantidad rentados</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="txtCantRentados" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCantRentados" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td class="auto-style3"></td>
             </tr>
             <tr>
                 <td class="auto-style1">Sucursal</td>
                 <td>
-                    <asp:TextBox ID="txtSucursal" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtSucursal" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">Codigo del vehiculo</td>
                 <td>
-                    <asp:TextBox ID="txtCodVehiculo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodVehiculo" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>

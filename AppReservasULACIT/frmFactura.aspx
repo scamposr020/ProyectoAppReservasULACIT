@@ -1,4 +1,4 @@
-﻿<%@ Page  Async="true" Title="Mantenimiento Factura" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmFactura.aspx.cs" Inherits="AppReservasULACIT.frmFactura" %>
+﻿<%@ Page  Async="true" Title="Mantenimiento Factura" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmFactura.aspx.cs" Inherits="AppReservasULACIT.frmFactura" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style type="text/css">
@@ -17,7 +17,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Container">
         <br/>
- <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de hotel"></asp:Label></h1>
+ <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Factura"></asp:Label></h1>
         <asp:GridView Width="100%" ID="gvFacturas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvFacturas_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
@@ -37,7 +37,7 @@
                     <asp:Label ID="Label2" runat="server" Text="Codigo"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -69,7 +69,7 @@
                     <asp:Label ID="Label3" runat="server" Text="Fecha monto total"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtMontoTotal" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtMontoTotal" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -78,28 +78,28 @@
                     <asp:Label ID="Label4" runat="server" Text="Código Empleado"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigoEmple" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoEmple" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">Código Sucursal</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="txtCodigoSuc" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoSuc" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td class="auto-style3"></td>
             </tr>
             <tr>
                 <td class="auto-style1">Código Usuario</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoUsua" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoUsua" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">Código Orden</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoOrd" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoOrd" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>

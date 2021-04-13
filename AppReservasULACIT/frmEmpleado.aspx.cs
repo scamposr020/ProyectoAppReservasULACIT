@@ -221,5 +221,10 @@ namespace AppReservasULACIT
             }
 
         }
+
+        protected void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

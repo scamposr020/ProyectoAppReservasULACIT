@@ -1,4 +1,4 @@
-﻿<%@ Page Async="true" Title="Mantenimiento de hotel" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmHotel.aspx.cs" Inherits="AppReservasULACIT.frmHotel" %>
+﻿<%@ Page Async="true" Title="Mantenimiento de hotel" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmHotel.aspx.cs" Inherits="AppReservasULACIT.frmHotel" UnobtrusiveValidationMode="None"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style type="text/css">
@@ -37,7 +37,7 @@
                     <asp:Label ID="Label2" runat="server" Text="Codigo"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigo" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
