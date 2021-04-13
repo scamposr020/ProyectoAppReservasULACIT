@@ -31,7 +31,9 @@
                         <li><a runat="server" href="frmHotel.aspx">Hotel</a></li>
                         <li><a runat="server" href="frmHabitacion.aspx">Habitacion</a></li>
                         <li><a runat="server" href="frmReserva.aspx">Reserva</a></li>
-                          <li><a runat="server" href="frmFactura.aspx">Factura</a></li>
+                        <li><a runat="server" href="frmFactura.aspx">Factura</a></li>
+                        <li><a runat="server" href="frmEmpleado.aspx">Empleado</a></li>
+                        <li><a runat="server" href="frmInventario.aspx">Inventario</a></li>
                     </ul>
                 </div>
             </div>
