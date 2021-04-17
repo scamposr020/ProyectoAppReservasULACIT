@@ -1,7 +1,6 @@
-﻿<%@ Page  Async="true" Title="Mantenimiento Factura" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmFactura.aspx.cs" Inherits="AppReservasULACIT.frmFactura" UnobtrusiveValidationMode="None"%>
+﻿<%@ Page Async="true" Title="Mantenimiento Sucursal" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="frmSucursal.aspx.cs" Inherits="AppReservasULACIT.frmSucursal"  UnobtrusiveValidationMode="None" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-    <style type="text/css">
+<style type="text/css">
         .auto-style1 {
             width: 156px;
         }
@@ -17,8 +16,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Container">
         <br/>
- <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Factura"></asp:Label></h1>
-        <asp:GridView Width="100%" ID="gvFacturas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvFacturas_RowDataBound">
+ <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Sucursales"></asp:Label></h1>
+        <asp:GridView Width="100%" ID="gvSucursales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvSucursales_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -42,64 +41,34 @@
                 <td>&nbsp;</td>
             </tr>
 
-              <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="Label5" runat="server" Text="Fecha de renta"></asp:Label>
-                </td>
-                <td>
-                    <asp:Calendar ID="clFechRenta" runat="server"></asp:Calendar>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-
-              <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="Label6" runat="server" Text="Fecha de devolución"></asp:Label>
-                </td>
-               
-                <td>
-                    <asp:Calendar ID="clFechDevo" runat="server"></asp:Calendar>
-                  </td>
-            </tr>
-
-           
-
             <tr>
                 <td class="auto-style1">
-                    <asp:Label ID="Label3" runat="server" Text="Monto total"></asp:Label>
+                    <asp:Label ID="Label4" runat="server" Text="Teléfono"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtMontoTotal" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtTelefono" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style1">
-                    <asp:Label ID="Label4" runat="server" Text="Código Empleado"></asp:Label>
-                </td>
-                <td>
-                    <asp:TextBox ID="txtCodigoEmple" runat="server" TextMode="Number"></asp:TextBox>
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">Código Sucursal</td>
+                <td class="auto-style2">Correo</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="txtCodigoSuc" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCorreo" runat="server" TextMode="Email"></asp:TextBox>
                 </td>
                 <td class="auto-style3"></td>
             </tr>
             <tr>
-                <td class="auto-style1">Código Usuario</td>
+                <td class="auto-style1">Código RentACar</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoUsua" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoRent" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
-            <tr>
-                <td class="auto-style1">Código Orden</td>
+        
+             <tr>
+                <td class="auto-style1">Código Dirección</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoOrd" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:TextBox ID="txtCodigoDirec" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>

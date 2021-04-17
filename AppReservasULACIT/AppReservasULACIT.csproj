@@ -144,6 +144,7 @@
     <Compile Include="Controllers\HotelManager.cs" />
     <Compile Include="Controllers\InventarioManager.cs" />
     <Compile Include="Controllers\OrdenManager.cs" />
+    <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -194,6 +195,13 @@
     <Compile Include="frmReserva.aspx.designer.cs">
       <DependentUpon>frmReserva.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmSucursal.aspx.cs">
+      <DependentUpon>frmSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSucursal.aspx.designer.cs">
+      <DependentUpon>frmSucursal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +220,7 @@
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Orden.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrar.aspx.cs">
@@ -250,6 +259,7 @@
     <Content Include="frmInventario.aspx" />
     <Content Include="frmOrden.aspx" />
     <Content Include="frmReserva.aspx" />
+    <Content Include="frmSucursal.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Login.aspx" />
