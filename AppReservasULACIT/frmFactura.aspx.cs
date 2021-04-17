@@ -130,7 +130,7 @@ namespace AppReservasULACIT
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                e.Row.Cells[0].Text = "Codigo";
+                e.Row.Cells[0].Text = "Código";
                 e.Row.Cells[1].Text = "Fecha de renta";
                 e.Row.Cells[2].Text = "Fecha de devolución";
                 e.Row.Cells[3].Text = "Fecha monto total";
@@ -192,7 +192,7 @@ namespace AppReservasULACIT
                 if (!string.IsNullOrEmpty(codigoEliminado))
                 {
                     InicializarControles();
-                    lblResultado.Text = "Factura eliminada con exito";
+                    lblResultado.Text = "Factura eliminada con éxito";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
 

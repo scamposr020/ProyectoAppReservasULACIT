@@ -143,6 +143,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelManager.cs" />
     <Compile Include="Controllers\InventarioManager.cs" />
+    <Compile Include="Controllers\OrdenManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -179,6 +180,13 @@
     <Compile Include="frmInventario.aspx.designer.cs">
       <DependentUpon>frmInventario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmOrden.aspx.cs">
+      <DependentUpon>frmOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOrden.aspx.designer.cs">
+      <DependentUpon>frmOrden.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmReserva.aspx.cs">
       <DependentUpon>frmReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -202,6 +210,7 @@
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Inventario.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Orden.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -239,6 +248,7 @@
     <Content Include="frmFactura.aspx" />
     <Content Include="frmHabitacion.aspx" />
     <Content Include="frmInventario.aspx" />
+    <Content Include="frmOrden.aspx" />
     <Content Include="frmReserva.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
