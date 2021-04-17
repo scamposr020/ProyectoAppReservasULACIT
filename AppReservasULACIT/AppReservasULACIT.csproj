@@ -138,6 +138,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DireccionManager.cs" />
     <Compile Include="Controllers\EmpleadoManager.cs" />
     <Compile Include="Controllers\FacturaManager.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -152,6 +153,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDireccion.aspx.cs">
+      <DependentUpon>frmDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDireccion.aspx.designer.cs">
+      <DependentUpon>frmDireccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmEmpleado.aspx.cs">
       <DependentUpon>frmEmpleado.aspx</DependentUpon>
@@ -212,6 +220,7 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Direccion.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\Habitacion.cs" />
@@ -253,6 +262,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="frmDireccion.aspx" />
     <Content Include="frmEmpleado.aspx" />
     <Content Include="frmFactura.aspx" />
     <Content Include="frmHabitacion.aspx" />

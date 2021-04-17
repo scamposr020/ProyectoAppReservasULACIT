@@ -11,10 +11,10 @@ using System;
 
 namespace AppReservasULACIT
 {
-    public partial class frmSucursal : System.Web.UI.Page
+    public partial class frmDireccion : System.Web.UI.Page
     {
-        IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
-        SucursalManager sucursalManager = new SucursalManager();
+        IEnumerable<Models.Direccion> direcciones = new ObservableCollection<Models.Direccion>();
+        DireccionManager direccionManager = new DireccionManager();
 
         async protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,27 +27,28 @@ namespace AppReservasULACIT
             {
                 if (ValidarInsertar())
                 {
-                    Models.Sucursal sucursalIngresada = new Models.Sucursal();
-                    Models.Sucursal sucursal = new Models.Sucursal()
+                    Models.Direccion direccionIngresada = new Models.Direccion();
+                    Models.Direccion direccion = new Models.Direccion()
                     {
-                        SUC_TELEFONO = txtTelefono.Text,
-                        SUC_EMAIL = txtCorreo.Text,
-                        RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),
-                        DIREC_CODIGO = Convert.ToInt32(txtCodigoDirec.Text)
+                        DIREC_PROVIN = txtProvincia.Text,
+                        DIREC_DISTRI = txtDistrito.Text,
+                        DIREC_CANTON =txtCanton.Text,
+                        DIREC_DETALLE = txtDetalle.Text,
+                        DIREC_COD_POSTAL = txtCodPostal.Text
                     };
 
-                    sucursalIngresada = await sucursalManager.Ingresar(sucursal, Session["TokenUsuario"].ToString());
+                    direccionIngresada = await direccionManager.Ingresar(direccion, Session["TokenUsuario"].ToString());
 
-                    if (sucursalIngresada != null)
+                    if (direccionIngresada != null)
                     {
-                        lblResultado.Text = "Sucursal ingresada correctamente";
+                        lblResultado.Text = "Dirección ingresada correctamente";
                         lblResultado.ForeColor = Color.Green;
                         lblResultado.Visible = true;
                         InicializarControles();
                     }
                     else
                     {
-                        lblResultado.Text = "Error al crear sucursal";
+                        lblResultado.Text = "Error al crear dirección";
                         lblResultado.ForeColor = Color.Maroon;
                         lblResultado.Visible = true;
                     }
@@ -55,7 +56,7 @@ namespace AppReservasULACIT
             }
             catch (Exception ex)
             {
-                lblResultado.Text = "Hubo un error al ingresar la sucursal. Detalle: " + ex.Message;
+                lblResultado.Text = "Hubo un error al ingresar la dirección. Detalle: " + ex.Message;
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
 
@@ -67,9 +68,9 @@ namespace AppReservasULACIT
         {
             try
             {
-                sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
-                gvSucursales.DataSource = sucursales.ToList();
-                gvSucursales.DataBind();
+                direcciones = await direccionManager.ObtenerDirecciones(Session["TokenUsuario"].ToString());
+                gvDirecciones.DataSource = direcciones.ToList();
+                gvDirecciones.DataBind();
             }
             catch (Exception e)
             {
@@ -82,32 +83,38 @@ namespace AppReservasULACIT
 
         private bool ValidarInsertar()
         {
-            if (string.IsNullOrEmpty(txtTelefono.Text))
+            if (string.IsNullOrEmpty(txtProvincia.Text))
             {
-                lblResultado.Text = "Debe ingresar el teléfono";
+                lblResultado.Text = "Debe ingresar la provincia";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCorreo.Text))
+            if (string.IsNullOrEmpty(txtDistrito.Text))
             {
-                lblResultado.Text = "Debe ingresar el correo";
+                lblResultado.Text = "Debe ingresar el distrito";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoRent.Text))
+            if (string.IsNullOrEmpty(txtCanton.Text))
             {
-                lblResultado.Text = "Debe ingresar el código del RentACar ";
+                lblResultado.Text = "Debe ingresar el cantón";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
-            } 
-            if (string.IsNullOrEmpty(txtCodigoDirec.Text))
+            }
+            if (string.IsNullOrEmpty(txtDetalle.Text))
             {
-                lblResultado.Text = "Debe ingresar el código de la Dirección";
+                lblResultado.Text = "Debe ingresar el detalle de la dirección";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }     if (string.IsNullOrEmpty(txtCodPostal.Text))
+            {
+                lblResultado.Text = "Debe ingresar el código postal";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
@@ -117,15 +124,16 @@ namespace AppReservasULACIT
             return true;
         }
 
-        protected void gvSucursales_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvDirecciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[0].Text = "Código";
-                e.Row.Cells[1].Text = "Teléfono";
-                e.Row.Cells[2].Text = "Correo";
-                e.Row.Cells[3].Text = "Código RentACar";
-                e.Row.Cells[4].Text = "Código Dirección";
+                e.Row.Cells[1].Text = "Provincia";
+                e.Row.Cells[2].Text = "Distrito";
+                e.Row.Cells[3].Text = "Cantón";
+                e.Row.Cells[4].Text = "Detalle";
+                e.Row.Cells[4].Text = "Código Postal";
             }
         }
 
@@ -133,28 +141,29 @@ namespace AppReservasULACIT
         {
             if (ValidarInsertar() && (!string.IsNullOrEmpty(txtCodigo.Text)))
             {
-                Models.Sucursal sucursalModificada = new Models.Sucursal();
-                Models.Sucursal sucursal = new Models.Sucursal()
+                Models.Direccion direccionModificada = new Models.Direccion();
+                Models.Direccion direccion = new Models.Direccion()
                 {
-                    SUC_CODIGO = Convert.ToInt32(txtCodigo.Text),
-                    SUC_TELEFONO = txtTelefono.Text,
-                    SUC_EMAIL = txtCorreo.Text,
-                    RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),
-                    DIREC_CODIGO = Convert.ToInt32(txtCodigoDirec.Text)
+                    DIREC_CODIGO = Convert.ToInt32(txtCodigo.Text),
+                    DIREC_PROVIN = txtProvincia.Text,
+                    DIREC_DISTRI = txtDistrito.Text,
+                    DIREC_CANTON = txtCanton.Text,
+                    DIREC_DETALLE = txtDetalle.Text,
+                    DIREC_COD_POSTAL = txtCodPostal.Text
                 };
 
-                sucursalModificada = await sucursalManager.Actualizar(sucursal, Session["TokenUsuario"].ToString());
+                direccionModificada = await direccionManager.Actualizar(direccion, Session["TokenUsuario"].ToString());
 
-                if (sucursalModificada != null)
+                if (direccionModificada != null)
                 {
-                    lblResultado.Text = "Sucursal actualizada correctamente";
+                    lblResultado.Text = "Dirección actualizada correctamente";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblResultado.Text = "Error al actualizar sucursal";
+                    lblResultado.Text = "Error al actualizar dirección";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
@@ -173,18 +182,18 @@ namespace AppReservasULACIT
             if (!string.IsNullOrEmpty(txtCodigo.Text))
             {
                 string codigoEliminado = string.Empty;
-                codigoEliminado = await sucursalManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
+                codigoEliminado = await direccionManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
                 if (!string.IsNullOrEmpty(codigoEliminado))
                 {
                     InicializarControles();
-                    lblResultado.Text = "Sucursal eliminada con éxito";
+                    lblResultado.Text = "Dirección eliminada con éxito";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
 
                 }
                 else
                 {
-                    lblResultado.Text = "Hubo un error al eliminar la sucursal";
+                    lblResultado.Text = "Hubo un error al eliminar la dirección";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
