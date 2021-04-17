@@ -123,6 +123,13 @@ namespace AppReservasULACIT
                 lblResultado.Visible = true;
                 return false;
             }
+            if(clFechRenta.SelectedDate > clFechDevo.SelectedDate)
+            {
+                lblResultado.Text = "Error. Fecha de renta es mayor a la Fecha de devolución";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
             return true;
         }
 
