@@ -57,7 +57,7 @@ namespace AppReservasULACIT
             }
             catch (Exception ex)
             {
-                lblResultado.Text = "Hubo un errpr al ingresar el empleado. Detalle: " + ex.Message;
+                lblResultado.Text = "Hubo un error al ingresar el empleado. Detalle: " + ex.Message;
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
 
@@ -146,7 +146,7 @@ namespace AppReservasULACIT
                 e.Row.Cells[3].Text = "Puesto";
                 e.Row.Cells[4].Text = "Telefono";
                 e.Row.Cells[5].Text = "Email";
-                e.Row.Cells[5].Text = "Sucursal";
+                e.Row.Cells[6].Text = "Sucursal";
             }
         }
 
