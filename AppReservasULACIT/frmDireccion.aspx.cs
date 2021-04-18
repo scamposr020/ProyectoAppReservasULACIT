@@ -11,10 +11,10 @@ using System;
 
 namespace AppReservasULACIT
 {
-    public partial class frmFactura : System.Web.UI.Page
+    public partial class frmDireccion : System.Web.UI.Page
     {
-        IEnumerable<Models.Factura> facturas = new ObservableCollection<Models.Factura>();
-        FacturaManager facturaManager = new FacturaManager();
+        IEnumerable<Models.Direccion> direcciones = new ObservableCollection<Models.Direccion>();
+        DireccionManager direccionManager = new DireccionManager();
 
         async protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,30 +27,28 @@ namespace AppReservasULACIT
             {
                 if (ValidarInsertar())
                 {
-                    Models.Factura facturaIngresada = new Models.Factura();
-                    Models.Factura factura = new Models.Factura()
+                    Models.Direccion direccionIngresada = new Models.Direccion();
+                    Models.Direccion direccion = new Models.Direccion()
                     {
-                        FACT_FEC_RENT = clFechRenta.SelectedDate,
-                        FACT_FEC_DEVOLU = clFechDevo.SelectedDate,
-                        FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
-                        EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
-                        SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
-                        USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
-                        ORD_CODIGO = Convert.ToInt32(txtCodigoOrd.Text)
+                        DIREC_PROVIN = txtProvincia.Text,
+                        DIREC_DISTRI = txtDistrito.Text,
+                        DIREC_CANTON =txtCanton.Text,
+                        DIREC_DETALLE = txtDetalle.Text,
+                        DIREC_COD_POSTAL = txtCodPostal.Text
                     };
 
-                   facturaIngresada = await facturaManager.Ingresar(factura, Session["TokenUsuario"].ToString());
+                    direccionIngresada = await direccionManager.Ingresar(direccion, Session["TokenUsuario"].ToString());
 
-                    if (facturaIngresada != null)
+                    if (direccionIngresada != null)
                     {
-                        lblResultado.Text = "Factura ingresada correctamente";
+                        lblResultado.Text = "Dirección ingresada correctamente";
                         lblResultado.ForeColor = Color.Green;
                         lblResultado.Visible = true;
                         InicializarControles();
                     }
                     else
                     {
-                        lblResultado.Text = "Error al crear factura";
+                        lblResultado.Text = "Error al crear dirección";
                         lblResultado.ForeColor = Color.Maroon;
                         lblResultado.Visible = true;
                     }
@@ -58,7 +56,7 @@ namespace AppReservasULACIT
             }
             catch (Exception ex)
             {
-                lblResultado.Text = "Hubo un error al ingresar la factura. Detalle: " + ex.Message;
+                lblResultado.Text = "Hubo un error al ingresar la dirección. Detalle: " + ex.Message;
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
 
@@ -70,9 +68,9 @@ namespace AppReservasULACIT
         {
             try
             {
-                facturas = await facturaManager.ObtenerFacturas(Session["TokenUsuario"].ToString());
-                gvFacturas.DataSource = facturas.ToList();
-                gvFacturas.DataBind();
+                direcciones = await direccionManager.ObtenerDirecciones(Session["TokenUsuario"].ToString());
+                gvDirecciones.DataSource = direcciones.ToList();
+                gvDirecciones.DataBind();
             }
             catch (Exception e)
             {
@@ -85,66 +83,57 @@ namespace AppReservasULACIT
 
         private bool ValidarInsertar()
         {
-            if (string.IsNullOrEmpty(txtMontoTotal.Text))
+            if (string.IsNullOrEmpty(txtProvincia.Text))
             {
-                lblResultado.Text = "Debe ingresar el monto total";
+                lblResultado.Text = "Debe ingresar la provincia";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoEmple.Text))
+            if (string.IsNullOrEmpty(txtDistrito.Text))
             {
-                lblResultado.Text = "Debe ingresar el codigo del empleado";
+                lblResultado.Text = "Debe ingresar el distrito";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoSuc.Text))
+            if (string.IsNullOrEmpty(txtCanton.Text))
             {
-                lblResultado.Text = "Debe ingresar el codigo del sucursal";
+                lblResultado.Text = "Debe ingresar el cantón";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtDetalle.Text))
+            {
+                lblResultado.Text = "Debe ingresar el detalle de la dirección";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }     if (string.IsNullOrEmpty(txtCodPostal.Text))
+            {
+                lblResultado.Text = "Debe ingresar el código postal";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoUsua.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del usuario";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtCodigoOrd.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo de la órden";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-            if(clFechRenta.SelectedDate > clFechDevo.SelectedDate)
-            {
-                lblResultado.Text = "Error. Fecha de renta es mayor a la Fecha de devolución";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
+
             return true;
         }
 
-        protected void gvFacturas_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvDirecciones_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[0].Text = "Código";
-                e.Row.Cells[1].Text = "Fecha de renta";
-                e.Row.Cells[2].Text = "Fecha de devolución";
-                e.Row.Cells[3].Text = "Fecha monto total";
-                e.Row.Cells[4].Text = "Código Empleado";
-                e.Row.Cells[5].Text = "Código Sucursal";
-                e.Row.Cells[6].Text = "Código Usuario";
-                e.Row.Cells[7].Text = "Código Orden";
+                e.Row.Cells[1].Text = "Provincia";
+                e.Row.Cells[2].Text = "Distrito";
+                e.Row.Cells[3].Text = "Cantón";
+                e.Row.Cells[4].Text = "Detalle";
+                e.Row.Cells[4].Text = "Código Postal";
             }
         }
 
@@ -152,31 +141,29 @@ namespace AppReservasULACIT
         {
             if (ValidarInsertar() && (!string.IsNullOrEmpty(txtCodigo.Text)))
             {
-                Models.Factura facturaModificado = new Models.Factura();
-                Models.Factura factura = new Models.Factura()
+                Models.Direccion direccionModificada = new Models.Direccion();
+                Models.Direccion direccion = new Models.Direccion()
                 {
-                    FACT_CODIGO = Convert.ToInt32(txtCodigo.Text),
-                    FACT_FEC_DEVOLU = clFechDevo.SelectedDate,
-                    FACT_FEC_RENT = clFechRenta.SelectedDate,
-                    FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
-                    EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
-                    SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
-                    USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
-                    ORD_CODIGO = Convert.ToInt32(txtCodigoOrd.Text)
+                    DIREC_CODIGO = Convert.ToInt32(txtCodigo.Text),
+                    DIREC_PROVIN = txtProvincia.Text,
+                    DIREC_DISTRI = txtDistrito.Text,
+                    DIREC_CANTON = txtCanton.Text,
+                    DIREC_DETALLE = txtDetalle.Text,
+                    DIREC_COD_POSTAL = txtCodPostal.Text
                 };
 
-                facturaModificado = await facturaManager.Actualizar(factura, Session["TokenUsuario"].ToString());
+                direccionModificada = await direccionManager.Actualizar(direccion, Session["TokenUsuario"].ToString());
 
-                if (facturaModificado != null)
+                if (direccionModificada != null)
                 {
-                    lblResultado.Text = "Hotel actualizado correctamente";
+                    lblResultado.Text = "Dirección actualizada correctamente";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblResultado.Text = "Error al actualizar hotel";
+                    lblResultado.Text = "Error al actualizar dirección";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
@@ -195,18 +182,18 @@ namespace AppReservasULACIT
             if (!string.IsNullOrEmpty(txtCodigo.Text))
             {
                 string codigoEliminado = string.Empty;
-                codigoEliminado = await facturaManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
+                codigoEliminado = await direccionManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
                 if (!string.IsNullOrEmpty(codigoEliminado))
                 {
                     InicializarControles();
-                    lblResultado.Text = "Factura eliminada con éxito";
+                    lblResultado.Text = "Dirección eliminada con éxito";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
 
                 }
                 else
                 {
-                    lblResultado.Text = "Hubo un error al eliminar la factura";
+                    lblResultado.Text = "Hubo un error al eliminar la dirección";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }

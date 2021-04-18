@@ -138,11 +138,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DireccionManager.cs" />
     <Compile Include="Controllers\EmpleadoManager.cs" />
     <Compile Include="Controllers\FacturaManager.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelManager.cs" />
     <Compile Include="Controllers\InventarioManager.cs" />
+    <Compile Include="Controllers\OrdenManager.cs" />
+    <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -150,6 +153,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmDireccion.aspx.cs">
+      <DependentUpon>frmDireccion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmDireccion.aspx.designer.cs">
+      <DependentUpon>frmDireccion.aspx</DependentUpon>
     </Compile>
     <Compile Include="frmEmpleado.aspx.cs">
       <DependentUpon>frmEmpleado.aspx</DependentUpon>
@@ -179,12 +189,26 @@
     <Compile Include="frmInventario.aspx.designer.cs">
       <DependentUpon>frmInventario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmOrden.aspx.cs">
+      <DependentUpon>frmOrden.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmOrden.aspx.designer.cs">
+      <DependentUpon>frmOrden.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmReserva.aspx.cs">
       <DependentUpon>frmReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="frmReserva.aspx.designer.cs">
       <DependentUpon>frmReserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmSucursal.aspx.cs">
+      <DependentUpon>frmSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmSucursal.aspx.designer.cs">
+      <DependentUpon>frmSucursal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -196,13 +220,16 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Direccion.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\Inventario.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Orden.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrar.aspx.cs">
@@ -235,11 +262,14 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="frmDireccion.aspx" />
     <Content Include="frmEmpleado.aspx" />
     <Content Include="frmFactura.aspx" />
     <Content Include="frmHabitacion.aspx" />
     <Content Include="frmInventario.aspx" />
+    <Content Include="frmOrden.aspx" />
     <Content Include="frmReserva.aspx" />
+    <Content Include="frmSucursal.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Login.aspx" />
