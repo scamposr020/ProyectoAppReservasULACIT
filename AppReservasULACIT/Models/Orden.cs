@@ -11,6 +11,7 @@ namespace AppReservasULACIT.Models
         public DateTime ORD_FEC_SOLI { get; set; }
         public int ORD_DIAS_RENT { get; set; }
         public double ORD_MONTO_DIA { get; set; }
+        public string ORD_DETALLE { get; set; }
         public int VEH_CODIGO { get; set; }
     }
 }

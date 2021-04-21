@@ -11,6 +11,7 @@ namespace AppReservasULACIT.Models
         public DateTime FACT_FEC_RENT { get; set; }
         public DateTime FACT_FEC_DEVOLU { get; set; }
         public double FACT_MONTO_TOT { get; set; }
+        public string FACT_DETALLE { get; set; }
         public int EMP_CODIGO { get; set; }
         public int SUC_CODIGO { get; set; }
         public int USU_CODIGO { get; set; }

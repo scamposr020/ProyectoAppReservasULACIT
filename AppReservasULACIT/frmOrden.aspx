@@ -66,6 +66,13 @@
                     <asp:TextBox ID="txtMontoDia" runat="server" TextMode="Number"></asp:TextBox>
                 </td>
                 <td class="auto-style3"></td>
+            </tr>    
+            <tr>
+                <td class="auto-style2">Detalle Orden</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="txtDetalle" runat="server"></asp:TextBox>
+                </td>
+                <td class="auto-style3"></td>
             </tr>
             <tr>
                 <td class="auto-style1">Código Vehiculo</td>

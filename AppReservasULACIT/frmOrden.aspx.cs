@@ -33,6 +33,7 @@ namespace AppReservasULACIT
                         ORD_FEC_SOLI = clFechSoli.SelectedDate,
                         ORD_DIAS_RENT = Convert.ToInt32(txtCantDias.Text),
                         ORD_MONTO_DIA = Convert.ToInt32(txtMontoDia.Text),
+                        ORD_DETALLE = txtDetalle.Text,
                         VEH_CODIGO = Convert.ToInt32(txtCodigoVehi.Text)
                     };
 
@@ -97,6 +98,13 @@ namespace AppReservasULACIT
                 lblResultado.Visible = true;
                 return false;
             }
+            if (string.IsNullOrEmpty(txtDetalle.Text))
+            {
+                lblResultado.Text = "Debe ingresar el detalle de la orden";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
 
             if (string.IsNullOrEmpty(txtCodigoVehi.Text))
             {
@@ -118,7 +126,8 @@ namespace AppReservasULACIT
                 e.Row.Cells[1].Text = "Fecha de orden solicitada";
                 e.Row.Cells[2].Text = "Cantidad días";
                 e.Row.Cells[3].Text = "Monto por día";
-                e.Row.Cells[4].Text = "Código Vehículo";
+                e.Row.Cells[4].Text = "Detalle";
+                e.Row.Cells[5].Text = "Código Vehículo";
             }
         }
 
@@ -133,6 +142,7 @@ namespace AppReservasULACIT
                     ORD_FEC_SOLI = clFechSoli.SelectedDate,
                     ORD_DIAS_RENT = Convert.ToInt32(txtCantDias.Text),
                     ORD_MONTO_DIA = Convert.ToInt32(txtMontoDia.Text),
+                    ORD_DETALLE = txtDetalle.Text,
                     VEH_CODIGO = Convert.ToInt32(txtCodigoVehi.Text)
                 };
 
