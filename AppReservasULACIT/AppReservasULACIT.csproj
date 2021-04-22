@@ -141,12 +141,16 @@
     <Compile Include="Controllers\DireccionManager.cs" />
     <Compile Include="Controllers\EmpleadoManager.cs" />
     <Compile Include="Controllers\FacturaManager.cs" />
+    <Compile Include="Controllers\HabitacionManager.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HotelManager.cs" />
     <Compile Include="Controllers\InventarioManager.cs" />
     <Compile Include="Controllers\OrdenManager.cs" />
+    <Compile Include="Controllers\RentacarManager.cs" />
+    <Compile Include="Controllers\ReservaManager.cs" />
     <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
+    <Compile Include="Controllers\VehiculoManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,6 +200,13 @@
     <Compile Include="frmOrden.aspx.designer.cs">
       <DependentUpon>frmOrden.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmRentacar.aspx.cs">
+      <DependentUpon>frmRentacar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmRentacar.aspx.designer.cs">
+      <DependentUpon>frmRentacar.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmReserva.aspx.cs">
       <DependentUpon>frmReserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -209,6 +220,13 @@
     </Compile>
     <Compile Include="frmSucursal.aspx.designer.cs">
       <DependentUpon>frmSucursal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmVehiculo.aspx.cs">
+      <DependentUpon>frmVehiculo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmVehiculo.aspx.designer.cs">
+      <DependentUpon>frmVehiculo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,9 +246,11 @@
     <Compile Include="Models\Inventario.cs" />
     <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Orden.cs" />
+    <Compile Include="Models\Rentacar.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Vehiculo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registrar.aspx.cs">
       <DependentUpon>Registrar.aspx</DependentUpon>
@@ -268,8 +288,10 @@
     <Content Include="frmHabitacion.aspx" />
     <Content Include="frmInventario.aspx" />
     <Content Include="frmOrden.aspx" />
+    <Content Include="frmRentacar.aspx" />
     <Content Include="frmReserva.aspx" />
     <Content Include="frmSucursal.aspx" />
+    <Content Include="frmVehiculo.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Login.aspx" />

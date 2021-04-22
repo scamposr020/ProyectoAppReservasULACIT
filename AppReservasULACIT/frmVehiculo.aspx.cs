@@ -11,10 +11,10 @@ using System.Drawing;
 
 namespace AppReservasULACIT
 {
-    public partial class frmHabitacion : System.Web.UI.Page
+    public partial class frmVehiculo : System.Web.UI.Page
     {
-        IEnumerable<Models.Habitacion> habitaciones = new ObservableCollection<Models.Habitacion>();
-        HabitacionManager habitacionManager = new HabitacionManager();
+        IEnumerable<Models.Vehiculo> vehiculos = new ObservableCollection<Models.Vehiculo>();
+        VehiculoManager vehiculoManager = new VehiculoManager();
 
         async protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,30 +27,31 @@ namespace AppReservasULACIT
             {
                 if (ValidarInsertar())
                 {
-                    Models.Habitacion habitacionIngresada = new Models.Habitacion();
-                    Models.Habitacion habitacion = new Models.Habitacion()
+                    Models.Vehiculo vehiculoIngresado = new Models.Vehiculo();
+                    Models.Vehiculo vehiculo = new Models.Vehiculo()
                     {
-                        HOT_CODIGO = Convert.ToInt32(txtHOT_CODIGO.Text),
-                        HAB_NUMERO = Convert.ToInt32(txtHAB_NUMERO.Text),
-                        HAB_CAPACIDAD = Convert.ToInt32(txtHAB_CAPACIDAD.Text),
-                        HAB_TIPO = txtTipo.Text,
-                        HAB_DESCRIPCION = txt_HAB_DESCRIPCION.Text,
-                        HAB_ESTADO = txtEstado.Text,
-                        HAB_PRECIO = Convert.ToDecimal(txtPrecio.Text)
+                        VEH_MARCA = txtVEH_MARCA.Text,
+                        VEH_TIPO = txtVEH_TIPO.Text,
+                        VEH_CANTI_PUERTAS = Convert.ToInt32(txtVEH_CANTI_PUERTAS.Text),
+                        VEH_COMBUSTIBLE = txtVEH_COMBUSTIBLE.Text,
+                        VEH_COLOR = txt_VEH_COLOR.Text,
+                        VEH_MODELO = txtVEH_MODELO.Text,
+                        VEH_ANO = Convert.ToInt32(txtVEH_ANO.Text),
+                        SUC_CODIGO = Convert.ToInt32(txtSUC_CODIGO.Text)
                     };
 
-                    habitacionIngresada = await habitacionManager.Ingresar(habitacion, Session["TokenUsuario"].ToString());
+                    vehiculoIngresado = await vehiculoManager.Ingresar(vehiculo, Session["TokenUsuario"].ToString());
 
-                    if (habitacionIngresada != null)
+                    if (vehiculoIngresado != null)
                     {
-                        lblResultado.Text = "Habitacion ingresado correctamente";
+                        lblResultado.Text = "Vehiculo ingresado correctamente";
                         lblResultado.ForeColor = Color.Green;
                         lblResultado.Visible = true;
                         InicializarControles();
                     }
                     else
                     {
-                        lblResultado.Text = "Error al crear habitacion";
+                        lblResultado.Text = "Error al crear vehiculo";
                         lblResultado.ForeColor = Color.Maroon;
                         lblResultado.Visible = true;
                     }
@@ -58,7 +59,7 @@ namespace AppReservasULACIT
             }
             catch (Exception ex)
             {
-                lblResultado.Text = "Hubo un error al ingresar la habitacion. Detalle: " + ex.Message;
+                lblResultado.Text = "Hubo un error al ingresar El vehiculo. Detalle: " + ex.Message;
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
 
@@ -70,9 +71,9 @@ namespace AppReservasULACIT
         {
             try
             {
-                habitaciones = await habitacionManager.ObtenerHabitaciones(Session["TokenUsuario"].ToString());
-                gvHabitaciones.DataSource = habitaciones.ToList();
-                gvHabitaciones.DataBind();
+                vehiculos = await vehiculoManager.ObtenerVehiculos(Session["TokenUsuario"].ToString());
+                gvVehiculos.DataSource = vehiculos.ToList();
+                gvVehiculos.DataBind();
             }
             catch (Exception e)
             {
@@ -85,57 +86,65 @@ namespace AppReservasULACIT
 
         private bool ValidarInsertar()
         {
-            if (string.IsNullOrEmpty(txtHOT_CODIGO.Text))
+            if (string.IsNullOrEmpty(txtVEH_MARCA.Text))
             {
-                lblResultado.Text = "Debe ingresar el codigo de Hotel";
+                lblResultado.Text = "Debe ingresar la marca del vehiculo";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtHAB_NUMERO.Text))
+            if (string.IsNullOrEmpty(txtVEH_TIPO.Text))
             {
-                lblResultado.Text = "Debe ingresar el numero de Habitacion";
+                lblResultado.Text = "Debe el tipo de Vehiculo";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtHAB_CAPACIDAD.Text))
+            if (string.IsNullOrEmpty(txtVEH_CANTI_PUERTAS.Text))
             {
-                lblResultado.Text = "Debe ingresar la capacidad de habitacion";
+                lblResultado.Text = "Debe ingresar la cantidad de puertas";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtTipo.Text))
+            if (string.IsNullOrEmpty(txtVEH_COMBUSTIBLE.Text))
             {
-                lblResultado.Text = "Debe ingresar el tipo de habitacion";
+                lblResultado.Text = "Debe ingresar el tipo de combustible";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txt_HAB_DESCRIPCION.Text))
+            if (string.IsNullOrEmpty(txt_VEH_COLOR.Text))
             {
-                lblResultado.Text = "Debe ingresar la descripcion de habitacion";
+                lblResultado.Text = "Debe ingresar el color del vehiculo";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtEstado.Text))
+            if (string.IsNullOrEmpty(txtVEH_MODELO.Text))
             {
-                lblResultado.Text = "Debe ingresar el estado de habitacion";
+                lblResultado.Text = "Debe ingresar el modelo del vehiculo.";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtPrecio.Text))
+            if (string.IsNullOrEmpty(txtVEH_ANO.Text))
             {
-                lblResultado.Text = "Debe ingresar el precio de habitacion";
+                lblResultado.Text = "Debe ingresar el año del vehiculo";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtSUC_CODIGO.Text))
+            {
+                lblResultado.Text = "Debe ingresar el codigo de sucursal";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
@@ -144,18 +153,19 @@ namespace AppReservasULACIT
             return true;
         }
 
-        protected void gvHabitaciones_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvVehiculos_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                e.Row.Cells[0].Text = "Codigo Habitacion";
-                e.Row.Cells[1].Text = "Codigo Hotel";
-                e.Row.Cells[2].Text = "Numero Habitacion";
-                e.Row.Cells[3].Text = "Capacidad Habitacion";
-                e.Row.Cells[4].Text = "Tipo";
-                e.Row.Cells[5].Text = "Descripcion";
-                e.Row.Cells[6].Text = "Estado";
-                e.Row.Cells[7].Text = "Precio";
+                e.Row.Cells[0].Text = "Codigo Vehiculo";
+                e.Row.Cells[1].Text = "Marca de Vehiculo";
+                e.Row.Cells[2].Text = "Tipo de Vehiculo";
+                e.Row.Cells[3].Text = "Cantidad de puertas";
+                e.Row.Cells[4].Text = "Tipo de combustible";
+                e.Row.Cells[5].Text = "Color";
+                e.Row.Cells[6].Text = "Modelo";
+                e.Row.Cells[7].Text = "Año";
+                e.Row.Cells[8].Text = "Sucursal";
             }
         }
 
@@ -163,31 +173,32 @@ namespace AppReservasULACIT
         {
             if (ValidarInsertar() && (!string.IsNullOrEmpty(txtCodigo.Text)))
             {
-                Models.Habitacion habitacionModificada = new Models.Habitacion();
-                Models.Habitacion habitacion = new Models.Habitacion()
+                Models.Vehiculo vehiculoModificado = new Models.Vehiculo();
+                Models.Vehiculo vehiculo = new Models.Vehiculo()
                 {
-                    HAB_CODIGO = Convert.ToInt32(txtCodigo.Text),
-                    HOT_CODIGO = Convert.ToInt32(txtHOT_CODIGO.Text),
-                    HAB_NUMERO = Convert.ToInt32(txtHAB_NUMERO.Text),
-                    HAB_CAPACIDAD = Convert.ToInt32(txtHAB_CAPACIDAD.Text),
-                    HAB_TIPO = txtTipo.Text,
-                    HAB_DESCRIPCION = txt_HAB_DESCRIPCION.Text,
-                    HAB_ESTADO = txtEstado.Text,
-                    HAB_PRECIO = Convert.ToDecimal(txtPrecio.Text)
+                    VEH_CODIGO = Convert.ToInt32(txtCodigo.Text),
+                    VEH_MARCA = txtVEH_MARCA.Text,
+                    VEH_TIPO = txtVEH_TIPO.Text,
+                    VEH_CANTI_PUERTAS = Convert.ToInt32(txtVEH_CANTI_PUERTAS.Text),
+                    VEH_COMBUSTIBLE = txtVEH_COMBUSTIBLE.Text,
+                    VEH_COLOR = txt_VEH_COLOR.Text,
+                    VEH_MODELO = txtVEH_MODELO.Text,
+                    VEH_ANO = Convert.ToInt32(txtVEH_ANO.Text),
+                    SUC_CODIGO = Convert.ToInt32(txtSUC_CODIGO.Text)
                 };
 
-                habitacionModificada = await habitacionManager.Actualizar(habitacion, Session["TokenUsuario"].ToString());
+                vehiculoModificado = await vehiculoManager.Actualizar(vehiculo, Session["TokenUsuario"].ToString());
 
-                if (habitacionModificada != null)
+                if (vehiculoModificado != null)
                 {
-                    lblResultado.Text = "Habitacion actualizada correctamente";
+                    lblResultado.Text = "Vehiculo actualizado correctamente";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblResultado.Text = "Error al actualizar habitacion";
+                    lblResultado.Text = "Error al actualizar vehiculo";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
@@ -207,18 +218,18 @@ namespace AppReservasULACIT
             if (!string.IsNullOrEmpty(txtCodigo.Text))
             {
                 string codigoEliminado = string.Empty;
-                codigoEliminado = await habitacionManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
+                codigoEliminado = await vehiculoManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
                 if (!string.IsNullOrEmpty(codigoEliminado))
                 {
                     InicializarControles();
-                    lblResultado.Text = "Habitacion eliminado con exito";
+                    lblResultado.Text = "Vehiculo eliminado con exito";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
 
                 }
                 else
                 {
-                    lblResultado.Text = "Hubo un error al eliminar la habitacion";
+                    lblResultado.Text = "Hubo un error al eliminar el vehiculo";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }

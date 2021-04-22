@@ -11,10 +11,10 @@ using System.Drawing;
 
 namespace AppReservasULACIT
 {
-    public partial class frmReserva : System.Web.UI.Page
+    public partial class frmRentacar : System.Web.UI.Page
     {
-        IEnumerable<Models.Reserva> reservas = new ObservableCollection<Models.Reserva>();
-        ReservaManager reservarManager = new ReservaManager();
+        IEnumerable<Models.Rentacar> rentacars = new ObservableCollection<Models.Rentacar>();
+        RentacarManager rentacarManager = new RentacarManager();
 
         async protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,27 +27,27 @@ namespace AppReservasULACIT
             {
                 if (ValidarInsertar())
                 {
-                    Models.Reserva reservaIngresada = new Models.Reserva();
-                    Models.Reserva reserva = new Models.Reserva()
+                    Models.Rentacar rentacarIngresado = new Models.Rentacar();
+                    Models.Rentacar rentacar = new Models.Rentacar()
                     {
-                        USU_CODIGO = Convert.ToInt32(txtUSU_CODIGO.Text),
-                        HAB_CODIGO = Convert.ToInt32(txtHAB_CODIGO.Text),
-                        RES_FECHA_INGRESO = clRES_FECHA_INGRESO.SelectedDate,
-                        RES_FECHA_SALIDA = clRES_FECHA_SALIDA.SelectedDate
+                        RENTAC_NOMBRE = txtNombre.Text,
+                        RENTAC_CANT_SUC = Convert.ToInt32(txtCantSuc.Text),
+                        RENTAC_TIPO = txtTipo.Text,
+                        RENTAC_WEBPAGE = txtWebPage.Text
                     };
 
-                    reservaIngresada = await reservarManager.Ingresar(reserva, Session["TokenUsuario"].ToString());
+                    rentacarIngresado = await rentacarManager.Ingresar(rentacar, Session["TokenUsuario"].ToString());
 
-                    if (reservaIngresada != null)
+                    if (rentacarIngresado != null)
                     {
-                        lblResultado.Text = "Reserva ingresada correctamente";
+                        lblResultado.Text = "Rentacar ingresado correctamente";
                         lblResultado.ForeColor = Color.Green;
                         lblResultado.Visible = true;
                         InicializarControles();
                     }
                     else
                     {
-                        lblResultado.Text = "Error al crear reserva";
+                        lblResultado.Text = "Error al crear rentacar";
                         lblResultado.ForeColor = Color.Maroon;
                         lblResultado.Visible = true;
                     }
@@ -55,7 +55,7 @@ namespace AppReservasULACIT
             }
             catch (Exception ex)
             {
-                lblResultado.Text = "Hubo un error al ingresar la reserva. Detalle: " + ex.Message;
+                lblResultado.Text = "Hubo un error al ingresar el rentacar. Detalle: " + ex.Message;
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
 
@@ -67,9 +67,9 @@ namespace AppReservasULACIT
         {
             try
             {
-                reservas = await reservarManager.ObtenerReservas(Session["TokenUsuario"].ToString());
-                gvReservas.DataSource = reservas.ToList();
-                gvReservas.DataBind();
+                rentacars = await rentacarManager.ObtenerRentacars(Session["TokenUsuario"].ToString());
+                gvRentacars.DataSource = rentacars.ToList();
+                gvRentacars.DataBind();
             }
             catch (Exception e)
             {
@@ -82,42 +82,51 @@ namespace AppReservasULACIT
 
         private bool ValidarInsertar()
         {
-            if (string.IsNullOrEmpty(txtUSU_CODIGO.Text))
+            if (string.IsNullOrEmpty(txtNombre.Text))
             {
-                lblResultado.Text = "Debe ingresar el codigo de usuario";
+                lblResultado.Text = "Debe ingresar el nombre del Rentacar";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtHAB_CODIGO.Text))
+            if (string.IsNullOrEmpty(txtCantSuc.Text))
             {
-                lblResultado.Text = "Debe ingresar el codigo de Habitacion";
+                lblResultado.Text = "Debe ingresar la cantidad de sucursales";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
 
-            if (clRES_FECHA_INGRESO.SelectedDate > clRES_FECHA_SALIDA.SelectedDate)
+            if (string.IsNullOrEmpty(txtTipo.Text))
             {
-                lblResultado.Text = "Error. Fecha de ingreso es mayor a la Fecha de salida";
+                lblResultado.Text = "Debe ingresar el tipo de rentacar";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
             }
+
+            if (string.IsNullOrEmpty(txtWebPage.Text))
+            {
+                lblResultado.Text = "Debe ingresar la pagina web del rentacar";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
+
 
             return true;
         }
 
-        protected void gvReservas_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void gvRentacars_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.Header)
             {
-                e.Row.Cells[0].Text = "Codigo Reserva";
-                e.Row.Cells[1].Text = "Codigo Usuario";
-                e.Row.Cells[2].Text = "Codigo Habitacion";
-                e.Row.Cells[3].Text = "Fecha de Ingreso";
-                e.Row.Cells[4].Text = "Fecha de Salida";
+                e.Row.Cells[0].Text = "Codigo Rentacar";
+                e.Row.Cells[1].Text = "Nombre Rentacar";
+                e.Row.Cells[2].Text = "Cantidad de sucursales";
+                e.Row.Cells[3].Text = "Tipo";
+                e.Row.Cells[4].Text = "Pagina Web";
             }
         }
 
@@ -125,28 +134,28 @@ namespace AppReservasULACIT
         {
             if (ValidarInsertar() && (!string.IsNullOrEmpty(txtCodigo.Text)))
             {
-                Models.Reserva reservaModificada = new Models.Reserva();
-                Models.Reserva reserva = new Models.Reserva()
+                Models.Rentacar rentacarModificado = new Models.Rentacar();
+                Models.Rentacar rentacar = new Models.Rentacar()
                 {
-                    RES_CODIGO = Convert.ToInt32(txtCodigo.Text),
-                    USU_CODIGO = Convert.ToInt32(txtUSU_CODIGO.Text),
-                    HAB_CODIGO = Convert.ToInt32(txtHAB_CODIGO.Text),
-                    RES_FECHA_INGRESO = clRES_FECHA_INGRESO.SelectedDate,
-                    RES_FECHA_SALIDA = clRES_FECHA_SALIDA.SelectedDate
+                    RENTAC_CODIGO = Convert.ToInt32(txtCodigo.Text),
+                    RENTAC_NOMBRE = txtNombre.Text,
+                    RENTAC_CANT_SUC = Convert.ToInt32(txtCantSuc.Text),
+                    RENTAC_TIPO = txtTipo.Text,
+                    RENTAC_WEBPAGE = txtWebPage.Text
                 };
 
-                reservaModificada = await reservarManager.Actualizar(reserva, Session["TokenUsuario"].ToString());
+                rentacarModificado = await rentacarManager.Actualizar(rentacar, Session["TokenUsuario"].ToString());
 
-                if (reservaModificada != null)
+                if (rentacarModificado != null)
                 {
-                    lblResultado.Text = "Reserva actualizada correctamente";
+                    lblResultado.Text = "Rentacar actualizado correctamente";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblResultado.Text = "Error al actualizar Reserva";
+                    lblResultado.Text = "Error al actualizar rentacar";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
@@ -166,18 +175,18 @@ namespace AppReservasULACIT
             if (!string.IsNullOrEmpty(txtCodigo.Text))
             {
                 string codigoEliminado = string.Empty;
-                codigoEliminado = await reservarManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
+                codigoEliminado = await rentacarManager.Eliminar(txtCodigo.Text, Session["TokenUsuario"].ToString());
                 if (!string.IsNullOrEmpty(codigoEliminado))
                 {
                     InicializarControles();
-                    lblResultado.Text = "Reserva eliminada con exito";
+                    lblResultado.Text = "Rentacar eliminado con exito";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
 
                 }
                 else
                 {
-                    lblResultado.Text = "Hubo un error al eliminar la reserva";
+                    lblResultado.Text = "Hubo un error al eliminar el rentacar";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }

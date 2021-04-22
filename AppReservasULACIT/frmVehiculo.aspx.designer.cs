@@ -11,7 +11,7 @@ namespace AppReservasULACIT
 {
 
 
-    public partial class frmReserva
+    public partial class frmVehiculo
     {
 
         /// <summary>
@@ -24,13 +24,13 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// gvReservas control.
+        /// gvVehiculos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvReservas;
+        protected global::System.Web.UI.WebControls.GridView gvVehiculos;
 
         /// <summary>
         /// Label2 control.
@@ -60,13 +60,13 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// txtUSU_CODIGO control.
+        /// txtVEH_MARCA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUSU_CODIGO;
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_MARCA;
 
         /// <summary>
         /// Label4 control.
@@ -78,13 +78,31 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// txtHAB_CODIGO control.
+        /// txtVEH_TIPO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHAB_CODIGO;
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_TIPO;
+
+        /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+
+        /// <summary>
+        /// txtVEH_CANTI_PUERTAS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_CANTI_PUERTAS;
 
         /// <summary>
         /// Label5 control.
@@ -96,31 +114,85 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label5;
 
         /// <summary>
-        /// clRES_FECHA_INGRESO control.
+        /// txtVEH_COMBUSTIBLE control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar clRES_FECHA_INGRESO;
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_COMBUSTIBLE;
 
         /// <summary>
-        /// Tipo control.
+        /// Label6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Tipo;
+        protected global::System.Web.UI.WebControls.Label Label6;
 
         /// <summary>
-        /// clRES_FECHA_SALIDA control.
+        /// txt_VEH_COLOR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar clRES_FECHA_SALIDA;
+        protected global::System.Web.UI.WebControls.TextBox txt_VEH_COLOR;
+
+        /// <summary>
+        /// Label10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// txtVEH_MODELO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_MODELO;
+
+        /// <summary>
+        /// Label7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+
+        /// <summary>
+        /// txtVEH_ANO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVEH_ANO;
+
+        /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+
+        /// <summary>
+        /// txtSUC_CODIGO control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSUC_CODIGO;
 
         /// <summary>
         /// btnIngresar control.
