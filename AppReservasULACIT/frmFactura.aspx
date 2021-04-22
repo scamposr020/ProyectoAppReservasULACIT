@@ -12,13 +12,29 @@
         .auto-style3 {
             height: 31px;
         }
+        #overlay {
+            width: auto;
+            height: auto;
+            position: static;
+            background-image:none;
+        }
+        #textOverlay {
+            position: static;
+            font-size: 10px;
+            color: #333;
+            transform: translate(0%);
+            -ms-transform: translate(0%);
+        }
+        #Label2 {
+            font-size: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Container">
         <br/>
  <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Factura"></asp:Label></h1>
-        <asp:GridView Width="100%" ID="gvFacturas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvFacturas_RowDataBound">
+        <asp:GridView Width="100%" ID="gvFacturas" runat="server" CellPadding="2" ForeColor="#333333" GridLines="None" OnRowDataBound="gvFacturas_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
