@@ -105,13 +105,13 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.TextBox txtDetalle;
 
         /// <summary>
-        /// txtCodigoVehi control.
+        /// ddVEH_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoVehi;
+        protected global::System.Web.UI.WebControls.DropDownList ddVEH_CODIGO;
 
         /// <summary>
         /// btnIngresar control.

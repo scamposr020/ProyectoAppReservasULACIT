@@ -16,9 +16,17 @@ namespace AppReservasULACIT
         IEnumerable<Models.Orden> ordenes = new ObservableCollection<Models.Orden>();
         OrdenManager ordenManager = new OrdenManager();
 
+        IEnumerable<Models.Vehiculo> vehiculos = new ObservableCollection<Models.Vehiculo>();
+        VehiculoManager vehiculoManager = new VehiculoManager();
+
         async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
@@ -34,7 +42,7 @@ namespace AppReservasULACIT
                         ORD_DIAS_RENT = Convert.ToInt32(txtCantDias.Text),
                         ORD_MONTO_DIA = Convert.ToInt32(txtMontoDia.Text),
                         ORD_DETALLE = txtDetalle.Text,
-                        VEH_CODIGO = Convert.ToInt32(txtCodigoVehi.Text)
+                        VEH_CODIGO = Convert.ToInt32(ddVEH_CODIGO.SelectedItem.Value.ToString())
                     };
 
                     ordenIngresada = await ordenManager.Ingresar(orden, Session["TokenUsuario"].ToString());
@@ -71,6 +79,12 @@ namespace AppReservasULACIT
                 ordenes = await ordenManager.ObtenerOrdenes(Session["TokenUsuario"].ToString());
                 gvOrdenes.DataSource = ordenes.ToList();
                 gvOrdenes.DataBind();
+
+                vehiculos = await vehiculoManager.ObtenerVehiculos(Session["TokenUsuario"].ToString());
+                ddVEH_CODIGO.DataTextField = "VEH_MODELO";
+                ddVEH_CODIGO.DataValueField = "VEH_CODIGO";
+                ddVEH_CODIGO.DataSource = vehiculos.ToList();
+                ddVEH_CODIGO.DataBind();
             }
             catch (Exception e)
             {
@@ -106,14 +120,7 @@ namespace AppReservasULACIT
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoVehi.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del vehículo ";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
+       
           
             return true;
         }
@@ -143,7 +150,7 @@ namespace AppReservasULACIT
                     ORD_DIAS_RENT = Convert.ToInt32(txtCantDias.Text),
                     ORD_MONTO_DIA = Convert.ToInt32(txtMontoDia.Text),
                     ORD_DETALLE = txtDetalle.Text,
-                    VEH_CODIGO = Convert.ToInt32(txtCodigoVehi.Text)
+                    VEH_CODIGO = Convert.ToInt32(ddVEH_CODIGO.SelectedItem.Value.ToString())
                 };
 
                 ordenModificada = await ordenManager.Actualizar(orden, Session["TokenUsuario"].ToString());

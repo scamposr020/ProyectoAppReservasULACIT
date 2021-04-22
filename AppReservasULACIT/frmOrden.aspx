@@ -93,7 +93,8 @@
             <tr>
                 <td class="auto-style1">Código Vehiculo</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoVehi" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddVEH_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
