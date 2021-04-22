@@ -33,8 +33,8 @@ namespace AppReservasULACIT
                         INV_CANT_DISPONIBLE = Convert.ToInt32(txtCantDisponible.Text),
                         INV_CANT_RENTADOS = Convert.ToInt32(txtCantRentados.Text),
                         SUC_CODIGO = Convert.ToInt32(txtSucursal.Text),
-                        VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text)
-
+                        VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text),
+                        INV_DETALLE = txtDetalle.Text
 
                     };
 
@@ -125,6 +125,14 @@ namespace AppReservasULACIT
                 return false;
             }
 
+            if (string.IsNullOrEmpty(txtDetalle.Text))
+            {
+                lblResultado.Text = "Debe ingresar el detalle del inventario";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
+
             return true;
         }
 
@@ -138,6 +146,7 @@ namespace AppReservasULACIT
                 e.Row.Cells[3].Text = "Cantidad Rentados";
                 e.Row.Cells[4].Text = "Sucursal";
                 e.Row.Cells[5].Text = "Codigo del Vehiculo";
+                e.Row.Cells[6].Text = "Detalle inventario";
             }
         }
 
@@ -153,7 +162,8 @@ namespace AppReservasULACIT
                     INV_CANT_DISPONIBLE = Convert.ToInt32(txtCantDisponible.Text),
                     INV_CANT_RENTADOS = Convert.ToInt32(txtCantRentados.Text),
                     SUC_CODIGO = Convert.ToInt32(txtSucursal.Text),
-                    VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text)
+                    VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text),
+                    INV_DETALLE = txtDetalle.Text
                 };
 
                 inventarioModificado = await inventarioManager.Actualizar(inventario, Session["TokenUsuario"].ToString());

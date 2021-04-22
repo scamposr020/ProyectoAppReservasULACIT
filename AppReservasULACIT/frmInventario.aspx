@@ -89,6 +89,13 @@
                 </td>
                 <td>&nbsp;</td>
             </tr>
+            <tr>
+                <td class="auto-style1">Inventario detalle</td>
+                <td>
+                    <asp:TextBox ID="txtDetalle" runat="server"></asp:TextBox>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
         </table>
         <asp:Button ID="btnIngresar" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" CssClass="btn btn-primary" />
         <asp:Button ID="btnModificar" runat="server" Text="Modificar" CssClass="btn bg-success" OnClick="btnModificar_Click" />

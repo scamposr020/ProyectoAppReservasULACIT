@@ -13,5 +13,6 @@ namespace AppReservasULACIT.Models
         public int INV_CANT_RENTADOS { get; set; }
         public int SUC_CODIGO { get; set; }
         public int VEH_CODIGO { get; set; }
+        public string INV_DETALLE { get; set; }
     }
 }
