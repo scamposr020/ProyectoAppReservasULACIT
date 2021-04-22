@@ -16,9 +16,18 @@ namespace AppReservasULACIT
         IEnumerable<Models.Vehiculo> vehiculos = new ObservableCollection<Models.Vehiculo>();
         VehiculoManager vehiculoManager = new VehiculoManager();
 
+        IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
+        SucursalManager sucursalManager = new SucursalManager();
+
         async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
+
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
@@ -37,7 +46,7 @@ namespace AppReservasULACIT
                         VEH_COLOR = txt_VEH_COLOR.Text,
                         VEH_MODELO = txtVEH_MODELO.Text,
                         VEH_ANO = Convert.ToInt32(txtVEH_ANO.Text),
-                        SUC_CODIGO = Convert.ToInt32(txtSUC_CODIGO.Text)
+                        SUC_CODIGO = Convert.ToInt32(ddSUC_CODIGO.SelectedItem.Value.ToString())
                     };
 
                     vehiculoIngresado = await vehiculoManager.Ingresar(vehiculo, Session["TokenUsuario"].ToString());
@@ -74,6 +83,12 @@ namespace AppReservasULACIT
                 vehiculos = await vehiculoManager.ObtenerVehiculos(Session["TokenUsuario"].ToString());
                 gvVehiculos.DataSource = vehiculos.ToList();
                 gvVehiculos.DataBind();
+
+                sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
+                ddSUC_CODIGO.DataTextField = "SUC_NOMBRE";
+                ddSUC_CODIGO.DataValueField = "SUC_CODIGO";
+                ddSUC_CODIGO.DataSource = sucursales.ToList();
+                ddSUC_CODIGO.DataBind();
             }
             catch (Exception e)
             {
@@ -142,13 +157,6 @@ namespace AppReservasULACIT
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtSUC_CODIGO.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo de sucursal";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
 
             return true;
         }
@@ -184,7 +192,7 @@ namespace AppReservasULACIT
                     VEH_COLOR = txt_VEH_COLOR.Text,
                     VEH_MODELO = txtVEH_MODELO.Text,
                     VEH_ANO = Convert.ToInt32(txtVEH_ANO.Text),
-                    SUC_CODIGO = Convert.ToInt32(txtSUC_CODIGO.Text)
+                    SUC_CODIGO = Convert.ToInt32(ddSUC_CODIGO.SelectedItem.Value.ToString())
                 };
 
                 vehiculoModificado = await vehiculoManager.Actualizar(vehiculo, Session["TokenUsuario"].ToString());

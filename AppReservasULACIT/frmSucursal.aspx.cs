@@ -30,6 +30,7 @@ namespace AppReservasULACIT
                     Models.Sucursal sucursalIngresada = new Models.Sucursal();
                     Models.Sucursal sucursal = new Models.Sucursal()
                     {
+                        SUC_NOMBRE = txtNombre.Text,
                         SUC_TELEFONO = txtTelefono.Text,
                         SUC_EMAIL = txtCorreo.Text,
                         RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),
@@ -82,6 +83,14 @@ namespace AppReservasULACIT
 
         private bool ValidarInsertar()
         {
+            if (string.IsNullOrEmpty(txtNombre.Text))
+            {
+                lblResultado.Text = "Debe ingresar el nombre";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
+
             if (string.IsNullOrEmpty(txtTelefono.Text))
             {
                 lblResultado.Text = "Debe ingresar el teléfono";
@@ -122,10 +131,11 @@ namespace AppReservasULACIT
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 e.Row.Cells[0].Text = "Código";
-                e.Row.Cells[1].Text = "Teléfono";
-                e.Row.Cells[2].Text = "Correo";
-                e.Row.Cells[3].Text = "Código RentACar";
-                e.Row.Cells[4].Text = "Código Dirección";
+                e.Row.Cells[1].Text = "Nombre";
+                e.Row.Cells[2].Text = "Teléfono";
+                e.Row.Cells[3].Text = "Correo";
+                e.Row.Cells[4].Text = "Código RentACar";
+                e.Row.Cells[5].Text = "Código Dirección";
             }
         }
 
@@ -137,6 +147,7 @@ namespace AppReservasULACIT
                 Models.Sucursal sucursal = new Models.Sucursal()
                 {
                     SUC_CODIGO = Convert.ToInt32(txtCodigo.Text),
+                    SUC_NOMBRE = txtNombre.Text,
                     SUC_TELEFONO = txtTelefono.Text,
                     SUC_EMAIL = txtCorreo.Text,
                     RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),

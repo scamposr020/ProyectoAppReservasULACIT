@@ -56,7 +56,15 @@
                 </td>
                 <td>&nbsp;</td>
             </tr>
-
+            <tr>
+                <td class="auto-style1">
+                    <asp:Label ID="Label3" runat="server" Text="Nombre"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
             <tr>
                 <td class="auto-style1">
                     <asp:Label ID="Label4" runat="server" Text="Teléfono"></asp:Label>

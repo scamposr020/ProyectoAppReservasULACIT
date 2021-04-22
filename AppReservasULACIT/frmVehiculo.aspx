@@ -4,19 +4,19 @@
         .auto-style1 {
             width: 156px;
         }
-        .auto-style2 {
+        .auto-style4 {
             width: 156px;
-            height: 31px;
+            height: 22px;
         }
-        .auto-style3 {
-            height: 31px;
+        .auto-style5 {
+            height: 22px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Container">
         <br/>
- <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Habitacion"></asp:Label></h1>
+ <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Vehiculo"></asp:Label></h1>
         <asp:GridView Width="100%" ID="gvVehiculos" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvVehiculos_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />
@@ -77,13 +77,13 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td class="auto-style1">
+                <td class="auto-style4">
                     <asp:Label ID="Label6" runat="server" Text="Color de vehiculo"></asp:Label>
                 </td>
-                <td>
+                <td class="auto-style5">
                     <asp:TextBox ID="txt_VEH_COLOR" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
+                <td class="auto-style5"></td>
             </tr>
             <tr>
                 <td class="auto-style1">
@@ -108,7 +108,8 @@
                     <asp:Label ID="Label8" runat="server" Text="Codigo de Sucursal"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtSUC_CODIGO" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddSUC_CODIGO" runat="server" Width="127px">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>

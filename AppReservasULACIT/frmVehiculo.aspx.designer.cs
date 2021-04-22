@@ -186,13 +186,13 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label8;
 
         /// <summary>
-        /// txtSUC_CODIGO control.
+        /// ddSUC_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSUC_CODIGO;
+        protected global::System.Web.UI.WebControls.DropDownList ddSUC_CODIGO;
 
         /// <summary>
         /// btnIngresar control.
