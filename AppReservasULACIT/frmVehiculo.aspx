@@ -11,6 +11,22 @@
         .auto-style5 {
             height: 22px;
         }
+        #overlay {
+        width: auto;
+        height: auto;
+        position: static;
+        background-image:none;
+        }
+        #textOverlay {
+            position: static;
+            font-size: 10px;
+            color: #333;
+            transform: translate(0%);
+            -ms-transform: translate(0%);
+        }
+        #Label2 {
+            font-size: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

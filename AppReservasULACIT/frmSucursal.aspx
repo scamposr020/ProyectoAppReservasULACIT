@@ -32,7 +32,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="Container">
         <br/>
- <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Sucursales"></asp:Label></h1>
+ <h1><asp:Label ID="Label1" runat="server" Text="Mantenimiento de Sucursal"></asp:Label></h1>
         <asp:GridView Width="100%" ID="gvSucursales" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDataBound="gvSucursales_RowDataBound">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <EditRowStyle BackColor="#999999" />

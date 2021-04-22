@@ -28,6 +28,7 @@ namespace AppReservasULACIT
             {
                 var jwtHandler = new JwtSecurityTokenHandler();
                 jwtSecurityToken = jwtHandler.ReadJwtToken(usuario.CadenaToken);
+                Session["CodUsuario"] = usuario.USU_CODIGO;
                 Session["IdUsuario"] = usuario.USU_IDENTIFICACION;
                 Session["NombreUsuario"] = usuario.USU_NOMBRE;
                 Session["TokenUsuario"] = usuario.CadenaToken;

@@ -132,40 +132,40 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.Label Label4;
 
         /// <summary>
-        /// txtCodigoEmple control.
+        /// ddEMP_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoEmple;
+        protected global::System.Web.UI.WebControls.DropDownList ddEMP_CODIGO;
 
         /// <summary>
-        /// txtCodigoSuc control.
+        /// ddSUC_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoSuc;
+        protected global::System.Web.UI.WebControls.DropDownList ddSUC_CODIGO;
 
         /// <summary>
-        /// txtCodigoUsua control.
+        /// ddUSU_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoUsua;
+        protected global::System.Web.UI.WebControls.DropDownList ddUSU_CODIGO;
 
         /// <summary>
-        /// txtCodigoOrd control.
+        /// ddORD_CODIGO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodigoOrd;
+        protected global::System.Web.UI.WebControls.DropDownList ddORD_CODIGO;
 
         /// <summary>
         /// btnIngresar control.

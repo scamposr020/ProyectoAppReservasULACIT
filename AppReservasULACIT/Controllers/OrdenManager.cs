@@ -23,7 +23,7 @@ namespace AppReservasULACIT.Controllers
             return client;
         }
 
-        public async Task<IEnumerable<Orden>> ObtenerFacturas(string token)
+        public async Task<IEnumerable<Orden>> ObtenerOrdenes(string token)
         {
             HttpClient httpClient = GetClient(token);
 

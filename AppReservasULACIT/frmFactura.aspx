@@ -77,9 +77,7 @@
                     <asp:Calendar ID="clFechDevo" runat="server"></asp:Calendar>
                   </td>
             </tr>
-
-           
-
+            
             <tr>
                 <td class="auto-style1">
                     <asp:Label ID="Label3" runat="server" Text="Monto total"></asp:Label>
@@ -89,7 +87,6 @@
                 </td>
                 <td>&nbsp;</td>
             </tr>
-            <tr>
                  <tr>
                 <td class="auto-style1">
                     <asp:Label ID="Label7" runat="server" Text="Detalle Factura"></asp:Label>
@@ -104,28 +101,32 @@
                     <asp:Label ID="Label4" runat="server" Text="Código Empleado"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtCodigoEmple" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddEMP_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">Código Sucursal</td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="txtCodigoSuc" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddSUC_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td class="auto-style3"></td>
             </tr>
             <tr>
                 <td class="auto-style1">Código Usuario</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoUsua" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddUSU_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">Código Orden</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoOrd" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddORD_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>

@@ -16,9 +16,22 @@ namespace AppReservasULACIT
         IEnumerable<Models.Factura> facturas = new ObservableCollection<Models.Factura>();
         FacturaManager facturaManager = new FacturaManager();
 
+        IEnumerable<Models.Empleado> empleados = new ObservableCollection<Models.Empleado>();
+        EmpleadoManager empleadoManager = new EmpleadoManager();
+
+        IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
+        SucursalManager sucursalManager = new SucursalManager();
+
+        IEnumerable<Models.Orden> ordenes = new ObservableCollection<Models.Orden>();
+        OrdenManager ordenManager = new OrdenManager();
         async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
@@ -34,10 +47,10 @@ namespace AppReservasULACIT
                         FACT_FEC_DEVOLU = clFechDevo.SelectedDate,
                         FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
                         FACT_DETALLE = txtDetalle.Text,
-                        EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
-                        SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
-                        USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
-                        ORD_CODIGO = Convert.ToInt32(txtCodigoOrd.Text)
+                        EMP_CODIGO = Convert.ToInt32(ddEMP_CODIGO.SelectedItem.Value.ToString()),
+                        SUC_CODIGO = Convert.ToInt32(ddSUC_CODIGO.SelectedItem.Value.ToString()),
+                        USU_CODIGO = Convert.ToInt32(ddUSU_CODIGO.SelectedItem.Value.ToString()),
+                        ORD_CODIGO = Convert.ToInt32(ddORD_CODIGO.SelectedItem.Value.ToString())
                     };
 
                    facturaIngresada = await facturaManager.Ingresar(factura, Session["TokenUsuario"].ToString());
@@ -74,6 +87,30 @@ namespace AppReservasULACIT
                 facturas = await facturaManager.ObtenerFacturas(Session["TokenUsuario"].ToString());
                 gvFacturas.DataSource = facturas.ToList();
                 gvFacturas.DataBind();
+
+                empleados = await empleadoManager.ObtenerEmpleados(Session["TokenUsuario"].ToString());
+                ddEMP_CODIGO.DataTextField = "EMP_NOMBRE";
+                ddEMP_CODIGO.DataValueField = "EMP_CODIGO";
+                ddEMP_CODIGO.DataSource = empleados.ToList();
+                ddEMP_CODIGO.DataBind();
+
+                sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
+                ddSUC_CODIGO.DataTextField = "SUC_NOMBRE";
+                ddSUC_CODIGO.DataValueField = "SUC_CODIGO";
+                ddSUC_CODIGO.DataSource = sucursales.ToList();
+                ddSUC_CODIGO.DataBind();
+
+                string usu = Session["NombreUsuario"].ToString();
+                var codUs = Session["CodUsuario"].ToString();
+                ddUSU_CODIGO.Items.Add(new ListItem(usu,codUs));
+
+                ordenes = await ordenManager.ObtenerOrdenes(Session["TokenUsuario"].ToString());
+                ddORD_CODIGO.DataTextField = "ORD_DETALLE";
+                ddORD_CODIGO.DataValueField = "ORD_CODIGO";
+                ddORD_CODIGO.DataSource = ordenes.ToList();
+                ddORD_CODIGO.DataBind();
+
+
             }
             catch (Exception e)
             {
@@ -101,36 +138,6 @@ namespace AppReservasULACIT
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoEmple.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del empleado";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(txtCodigoSuc.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del sucursal";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(txtCodigoUsua.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del usuario";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtCodigoOrd.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo de la órden";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
             if(clFechRenta.SelectedDate > clFechDevo.SelectedDate)
             {
                 lblResultado.Text = "Error. Fecha de renta es mayor a la Fecha de devolución";
@@ -169,10 +176,10 @@ namespace AppReservasULACIT
                     FACT_FEC_RENT = clFechRenta.SelectedDate,
                     FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
                     FACT_DETALLE = txtDetalle.Text,
-                    EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
-                    SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
-                    USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
-                    ORD_CODIGO = Convert.ToInt32(txtCodigoOrd.Text)
+                    EMP_CODIGO = Convert.ToInt32(ddEMP_CODIGO.SelectedItem.Value.ToString()),
+                    SUC_CODIGO = Convert.ToInt32(ddSUC_CODIGO.SelectedItem.Value.ToString()),
+                    USU_CODIGO = Convert.ToInt32(ddUSU_CODIGO.SelectedItem.Value.ToString()),
+                    ORD_CODIGO = Convert.ToInt32(ddORD_CODIGO.SelectedItem.Value.ToString())
                 };
 
                 facturaModificado = await facturaManager.Actualizar(factura, Session["TokenUsuario"].ToString());

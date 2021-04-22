@@ -68,7 +68,7 @@ namespace AppReservasULACIT
         {
             try
             {
-                ordenes = await ordenManager.ObtenerFacturas(Session["TokenUsuario"].ToString());
+                ordenes = await ordenManager.ObtenerOrdenes(Session["TokenUsuario"].ToString());
                 gvOrdenes.DataSource = ordenes.ToList();
                 gvOrdenes.DataBind();
             }
