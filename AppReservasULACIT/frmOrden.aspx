@@ -11,6 +11,22 @@
         .auto-style3 {
             height: 31px;
         }
+         #overlay {
+            width: auto;
+            height: auto;
+            position: static;
+            background-image:none;
+        }
+        #textOverlay {
+            position: static;
+            font-size: 10px;
+            color: #333;
+            transform: translate(0%);
+            -ms-transform: translate(0%);
+        }
+        #Label2 {
+            font-size: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -64,6 +80,13 @@
                 <td class="auto-style2">Monto por día</td>
                 <td class="auto-style3">
                     <asp:TextBox ID="txtMontoDia" runat="server" TextMode="Number"></asp:TextBox>
+                </td>
+                <td class="auto-style3"></td>
+            </tr>    
+            <tr>
+                <td class="auto-style2">Detalle Orden</td>
+                <td class="auto-style3">
+                    <asp:TextBox ID="txtDetalle" runat="server"></asp:TextBox>
                 </td>
                 <td class="auto-style3"></td>
             </tr>

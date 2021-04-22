@@ -33,6 +33,7 @@ namespace AppReservasULACIT
                         FACT_FEC_RENT = clFechRenta.SelectedDate,
                         FACT_FEC_DEVOLU = clFechDevo.SelectedDate,
                         FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
+                        FACT_DETALLE = txtDetalle.Text,
                         EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
                         SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
                         USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
@@ -92,6 +93,13 @@ namespace AppReservasULACIT
                 lblResultado.Visible = true;
                 return false;
             }
+             if (string.IsNullOrEmpty(txtDetalle.Text))
+            {
+                lblResultado.Text = "Debe ingresar el detalle de factura";
+                lblResultado.ForeColor = Color.Maroon;
+                lblResultado.Visible = true;
+                return false;
+            }
 
             if (string.IsNullOrEmpty(txtCodigoEmple.Text))
             {
@@ -141,10 +149,11 @@ namespace AppReservasULACIT
                 e.Row.Cells[1].Text = "Fecha de renta";
                 e.Row.Cells[2].Text = "Fecha de devolución";
                 e.Row.Cells[3].Text = "Fecha monto total";
-                e.Row.Cells[4].Text = "Código Empleado";
-                e.Row.Cells[5].Text = "Código Sucursal";
-                e.Row.Cells[6].Text = "Código Usuario";
-                e.Row.Cells[7].Text = "Código Orden";
+                e.Row.Cells[4].Text = "Detalle Factura";
+                e.Row.Cells[5].Text = "Código Empleado";
+                e.Row.Cells[6].Text = "Código Sucursal";
+                e.Row.Cells[7].Text = "Código Usuario";
+                e.Row.Cells[8].Text = "Código Orden";
             }
         }
 
@@ -159,6 +168,7 @@ namespace AppReservasULACIT
                     FACT_FEC_DEVOLU = clFechDevo.SelectedDate,
                     FACT_FEC_RENT = clFechRenta.SelectedDate,
                     FACT_MONTO_TOT = Convert.ToInt32(txtMontoTotal.Text),
+                    FACT_DETALLE = txtDetalle.Text,
                     EMP_CODIGO = Convert.ToInt32(txtCodigoEmple.Text),
                     SUC_CODIGO = Convert.ToInt32(txtCodigoSuc.Text),
                     USU_CODIGO = Convert.ToInt32(txtCodigoUsua.Text),
@@ -169,14 +179,14 @@ namespace AppReservasULACIT
 
                 if (facturaModificado != null)
                 {
-                    lblResultado.Text = "Hotel actualizado correctamente";
+                    lblResultado.Text = "Factura actualizada correctamente";
                     lblResultado.ForeColor = Color.Green;
                     lblResultado.Visible = true;
                     InicializarControles();
                 }
                 else
                 {
-                    lblResultado.Text = "Error al actualizar hotel";
+                    lblResultado.Text = "Error al actualizar factura";
                     lblResultado.ForeColor = Color.Maroon;
                     lblResultado.Visible = true;
                 }
