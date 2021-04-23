@@ -16,6 +16,12 @@ namespace AppReservasULACIT
         IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
         SucursalManager sucursalManager = new SucursalManager();
 
+        IEnumerable<Models.Rentacar> rentacars = new ObservableCollection<Models.Rentacar>();
+        RentacarManager rentacarManager = new RentacarManager();
+
+        IEnumerable<Models.Direccion> direcciones = new ObservableCollection<Models.Direccion>();
+        DireccionManager direccionManager = new DireccionManager();
+
         async protected void Page_Load(object sender, EventArgs e)
         {
             InicializarControles();
@@ -33,8 +39,8 @@ namespace AppReservasULACIT
                         SUC_NOMBRE = txtNombre.Text,
                         SUC_TELEFONO = txtTelefono.Text,
                         SUC_EMAIL = txtCorreo.Text,
-                        RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),
-                        DIREC_CODIGO = Convert.ToInt32(txtCodigoDirec.Text)
+                        RENTAC_CODIGO = Convert.ToInt32(ddRENTAC_CODIGO.SelectedItem.Value.ToString()),
+                        DIREC_CODIGO = Convert.ToInt32(ddDIREC_CODIGO.SelectedItem.Value.ToString())
                     };
 
                     sucursalIngresada = await sucursalManager.Ingresar(sucursal, Session["TokenUsuario"].ToString());
@@ -71,6 +77,18 @@ namespace AppReservasULACIT
                 sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
                 gvSucursales.DataSource = sucursales.ToList();
                 gvSucursales.DataBind();
+
+                rentacars = await rentacarManager.ObtenerRentacars(Session["TokenUsuario"].ToString());
+                ddRENTAC_CODIGO.DataTextField = "RENTAC_NOMBRE";
+                ddRENTAC_CODIGO.DataValueField = "RENTAC_CODIGO";
+                ddRENTAC_CODIGO.DataSource = rentacars.ToList();
+                ddRENTAC_CODIGO.DataBind();
+
+                direcciones = await direccionManager.ObtenerDirecciones(Session["TokenUsuario"].ToString());
+                ddDIREC_CODIGO.DataTextField = "DIREC_DETALLE";
+                ddDIREC_CODIGO.DataValueField = "DIREC_CODIGO";
+                ddDIREC_CODIGO.DataSource = direcciones.ToList();
+                ddDIREC_CODIGO.DataBind();
             }
             catch (Exception e)
             {
@@ -107,22 +125,6 @@ namespace AppReservasULACIT
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtCodigoRent.Text))
-            {
-                lblResultado.Text = "Debe ingresar el código del RentACar ";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            } 
-            if (string.IsNullOrEmpty(txtCodigoDirec.Text))
-            {
-                lblResultado.Text = "Debe ingresar el código de la Dirección";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
-
             return true;
         }
 
@@ -150,8 +152,8 @@ namespace AppReservasULACIT
                     SUC_NOMBRE = txtNombre.Text,
                     SUC_TELEFONO = txtTelefono.Text,
                     SUC_EMAIL = txtCorreo.Text,
-                    RENTAC_CODIGO = Convert.ToInt32(txtCodigoRent.Text),
-                    DIREC_CODIGO = Convert.ToInt32(txtCodigoDirec.Text)
+                    RENTAC_CODIGO = Convert.ToInt32(ddRENTAC_CODIGO.SelectedItem.Value.ToString()),
+                    DIREC_CODIGO = Convert.ToInt32(ddDIREC_CODIGO.SelectedItem.Value.ToString())
                 };
 
                 sucursalModificada = await sucursalManager.Actualizar(sucursal, Session["TokenUsuario"].ToString());

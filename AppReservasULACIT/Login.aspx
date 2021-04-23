@@ -8,7 +8,6 @@
     <title>Inicie sesion</title>
    <style>
 body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
 
 input[type=text], input[type=password] {
     width: 100%;
@@ -22,11 +21,14 @@ input[type=text], input[type=password] {
 .button {
     background-color: #243054;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    width: 150px;
+    height: 40px;
+    margin:auto;
+    display: flex;
+    justify-content:center;
     border: none;
     cursor: pointer;
-    width: 100%;
+    border-radius:  5px 5px 5px 5px;
 }
 
 button:hover {
@@ -58,7 +60,11 @@ img.avatar {
 }
 
 .container {
-    padding: 16px;
+    padding: 40px;
+    width: 50%;
+    margin: 50px auto;
+    box-shadow: 0 10px 30px 0 rgba(51, 51, 51,0.4);
+    border-radius:  5px 5px 5px 5px;
 }
 
 span.psw {

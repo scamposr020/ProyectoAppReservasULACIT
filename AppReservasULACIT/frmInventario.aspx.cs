@@ -91,9 +91,9 @@ namespace AppReservasULACIT
                 ddlCodSuc.DataBind();
 
                 vehiculos = await vehiculoManager.ObtenerVehiculos(Session["TokenUsuario"].ToString());
-                ddlCodVeh.DataTextField = "INV_DETALLE";
-                ddlCodVeh.DataValueField = "INV_CODIGO";
-                ddlCodVeh.DataSource = sucursales.ToList();
+                ddlCodVeh.DataTextField = "VEH_MODELO";
+                ddlCodVeh.DataValueField = "VEH_CODIGO";
+                ddlCodVeh.DataSource = vehiculos.ToList();
                 ddlCodVeh.DataBind();
             }
             catch (Exception e)

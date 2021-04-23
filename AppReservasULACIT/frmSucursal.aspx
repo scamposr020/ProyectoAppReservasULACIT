@@ -84,7 +84,8 @@
             <tr>
                 <td class="auto-style1">Código RentACar</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoRent" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddRENTAC_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -92,7 +93,8 @@
              <tr>
                 <td class="auto-style1">Código Dirección</td>
                 <td>
-                    <asp:TextBox ID="txtCodigoDirec" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddDIREC_CODIGO" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
