@@ -15,9 +15,20 @@ namespace AppReservasULACIT
         IEnumerable<Models.Inventario> inventrios = new ObservableCollection<Models.Inventario>();
         InventarioManager inventarioManager = new InventarioManager();
 
+        IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
+        SucursalManager sucursalManager = new SucursalManager();
+
+        IEnumerable<Models.Vehiculo> vehiculos = new ObservableCollection<Models.Vehiculo>();
+        VehiculoManager vehiculoManager = new VehiculoManager();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
@@ -32,8 +43,8 @@ namespace AppReservasULACIT
                         INV_CANT_TOTAL = Convert.ToInt32(txtCantTotal.Text),
                         INV_CANT_DISPONIBLE = Convert.ToInt32(txtCantDisponible.Text),
                         INV_CANT_RENTADOS = Convert.ToInt32(txtCantRentados.Text),
-                        SUC_CODIGO = Convert.ToInt32(txtSucursal.Text),
-                        VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text),
+                        SUC_CODIGO = Convert.ToInt32(ddlCodSuc.SelectedItem.Value.ToString()),
+                        VEH_CODIGO = Convert.ToInt32(ddlCodVeh.SelectedItem.Value.ToString()),
                         INV_DETALLE = txtDetalle.Text
 
                     };
@@ -72,6 +83,18 @@ namespace AppReservasULACIT
                 inventrios = await inventarioManager.ObtenerInventarios(Session["TokenUsuario"].ToString());
                 gvInventarios.DataSource = inventrios.ToList();
                 gvInventarios.DataBind();
+
+                sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
+                ddlCodSuc.DataTextField = "SUC_NOMBRE";
+                ddlCodSuc.DataValueField = "SUC_CODIGO";
+                ddlCodSuc.DataSource = sucursales.ToList();
+                ddlCodSuc.DataBind();
+
+                vehiculos = await vehiculoManager.ObtenerVehiculos(Session["TokenUsuario"].ToString());
+                ddlCodVeh.DataTextField = "INV_DETALLE";
+                ddlCodVeh.DataValueField = "INV_CODIGO";
+                ddlCodVeh.DataSource = sucursales.ToList();
+                ddlCodVeh.DataBind();
             }
             catch (Exception e)
             {
@@ -104,22 +127,6 @@ namespace AppReservasULACIT
             if (string.IsNullOrEmpty(txtCantRentados.Text))
             {
                 lblResultado.Text = "Debe ingresar la cantidad de rentados";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(txtSucursal.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo de la sucursal";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(txtCodVehiculo.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo del vehiculo";
                 lblResultado.ForeColor = Color.Maroon;
                 lblResultado.Visible = true;
                 return false;
@@ -161,8 +168,8 @@ namespace AppReservasULACIT
                     INV_CANT_TOTAL = Convert.ToInt32(txtCantTotal.Text),
                     INV_CANT_DISPONIBLE = Convert.ToInt32(txtCantDisponible.Text),
                     INV_CANT_RENTADOS = Convert.ToInt32(txtCantRentados.Text),
-                    SUC_CODIGO = Convert.ToInt32(txtSucursal.Text),
-                    VEH_CODIGO = Convert.ToInt32(txtCodVehiculo.Text),
+                    SUC_CODIGO = Convert.ToInt32(ddlCodSuc.SelectedItem.Value.ToString()),
+                    VEH_CODIGO = Convert.ToInt32(ddlCodVeh.SelectedItem.Value.ToString()),
                     INV_DETALLE = txtDetalle.Text
                 };
 

@@ -76,16 +76,18 @@
                 <td class="auto-style3"></td>
             </tr>
             <tr>
-                <td class="auto-style1">Sucursal</td>
+                <td class="auto-style1">Codigo de la Sucursal</td>
                 <td>
-                    <asp:TextBox ID="txtSucursal" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCodSuc" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style1">Codigo del vehiculo</td>
                 <td>
-                    <asp:TextBox ID="txtCodVehiculo" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCodVeh" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>

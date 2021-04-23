@@ -92,7 +92,8 @@
             <tr>
                 <td class="auto-style1">Codigo de la Sucursal</td>
                 <td>
-                    <asp:TextBox ID="txtSucursal" runat="server" TextMode="Number"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCodSuc" runat="server">
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
             </tr>

@@ -96,22 +96,22 @@ namespace AppReservasULACIT
         protected global::System.Web.UI.WebControls.TextBox txtCantRentados;
 
         /// <summary>
-        /// Control txtSucursal.
+        /// Control ddlCodSuc.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSucursal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCodSuc;
 
         /// <summary>
-        /// Control txtCodVehiculo.
+        /// Control ddlCodVeh.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCodVehiculo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCodVeh;
 
         /// <summary>
         /// Control txtDetalle.

@@ -13,6 +13,6 @@ namespace AppReservasULACIT.Models
         public string EMP_PUESTO { get; set; }
         public string EMP_TELEFONO { get; set; }
         public string EMP_EMAIL { get; set; }
-        public string SUC_CODIGO { get; set; }
+        public int SUC_CODIGO { get; set; }
     }
 }

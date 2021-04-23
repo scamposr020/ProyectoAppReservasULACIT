@@ -15,9 +15,17 @@ namespace AppReservasULACIT
         IEnumerable<Models.Empleado> empleados = new ObservableCollection<Models.Empleado>();
         EmpleadoManager empleadoManager = new EmpleadoManager();
 
+        IEnumerable<Models.Sucursal> sucursales = new ObservableCollection<Models.Sucursal>();
+        SucursalManager sucursalManager = new SucursalManager();
+
         async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
@@ -34,8 +42,7 @@ namespace AppReservasULACIT
                         EMP_PUESTO = txtPuesto.Text,
                         EMP_TELEFONO = txtTelefono.Text,
                         EMP_EMAIL = txtEmail.Text,
-                        SUC_CODIGO = txtSucursal.Text
-
+                        SUC_CODIGO = Convert.ToInt32(ddlCodSuc.SelectedItem.Value.ToString())
                     };
 
                     empleadoIngresado = await empleadoManager.Ingresar(empleado, Session["TokenUsuario"].ToString());
@@ -72,6 +79,12 @@ namespace AppReservasULACIT
                 empleados = await empleadoManager.ObtenerEmpleados(Session["TokenUsuario"].ToString());
                 gvEmpleados.DataSource = empleados.ToList();
                 gvEmpleados.DataBind();
+
+                sucursales = await sucursalManager.ObtenerSucursales(Session["TokenUsuario"].ToString());
+                ddlCodSuc.DataTextField = "SUC_NOMBRE";
+                ddlCodSuc.DataValueField = "SUC_CODIGO";
+                ddlCodSuc.DataSource = sucursales.ToList();
+                ddlCodSuc.DataBind();
             }
             catch (Exception e)
             {
@@ -125,14 +138,6 @@ namespace AppReservasULACIT
                 return false;
             }
 
-            if (string.IsNullOrEmpty(txtSucursal.Text))
-            {
-                lblResultado.Text = "Debe ingresar el codigo de la sucursal";
-                lblResultado.ForeColor = Color.Maroon;
-                lblResultado.Visible = true;
-                return false;
-            }
-
             return true;
         }
 
@@ -163,7 +168,7 @@ namespace AppReservasULACIT
                     EMP_PUESTO = txtPuesto.Text,
                     EMP_TELEFONO = txtTelefono.Text,
                     EMP_EMAIL = txtEmail.Text,
-                    SUC_CODIGO = txtSucursal.Text
+                    SUC_CODIGO = Convert.ToInt32(ddlCodSuc.SelectedItem.Value.ToString())
                 };
 
                 empleadoModificado = await empleadoManager.Actualizar(empleado, Session["TokenUsuario"].ToString());
