@@ -133,7 +133,7 @@ namespace AppReservasULACIT
                 e.Row.Cells[2].Text = "Distrito";
                 e.Row.Cells[3].Text = "Cantón";
                 e.Row.Cells[4].Text = "Detalle";
-                e.Row.Cells[4].Text = "Código Postal";
+                e.Row.Cells[5].Text = "Código Postal";
             }
         }
 

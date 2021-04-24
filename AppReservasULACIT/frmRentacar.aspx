@@ -88,7 +88,7 @@
                     <asp:Label ID="Tipo" runat="server" Text="Pagina Web"></asp:Label>
                 </td>
                 <td>
-                    <asp:TextBox ID="txtWebPage" runat="server" TextMode="Email"></asp:TextBox>
+                    <asp:TextBox ID="txtWebPage" runat="server"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
             </tr>
