@@ -24,7 +24,12 @@ namespace AppReservasULACIT
 
         async protected void Page_Load(object sender, EventArgs e)
         {
-            InicializarControles();
+            if (!Page.IsPostBack)
+            {
+
+                InicializarControles();
+
+            }
         }
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
